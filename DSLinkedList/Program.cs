@@ -14,9 +14,7 @@ namespace DSLinkedList
            list.Append(100);
            list.Insert(4,12);
            list.Display();
-           Node p = list.Pop();
-           System.Console.WriteLine(p.data);
-           list.Display();
+           System.Console.WriteLine(list.Search(10));
         }
     }
 }
