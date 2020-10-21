@@ -1,69 +1,30 @@
 using System;
 namespace DSLinkedList
 {
-    public class LinkedList
+    public class SortedLinkedList
     {
+
         public Node head;
-        public LinkedList()
+        public SortedLinkedList()
         {
             this.head = null;
         }
         public void Add(int item)
         {
             Node node = new Node(item);
-            if(head == null)
-            {
-                head = node;
-            }
-            else
-            {
-                node.next = head;
-                head = node;
-            }
-        }
-        public void Append(int item)
-        {
-            Node node = new Node(item);
-            if(head == null)
-                head = node;
-            else 
-            {
-                Node temp = head;
-                while(temp.next != null)
+            Node current = head,previous = null;
+            while(current != null && current.data < node.data)
                 {
-                    temp = temp.next;
+                    previous = current;
+                    current = current.next;
                 }
-                temp.next = node;
-            }
-        }
-        public void Insert(int position,int item)
-        {
-            Node node = new Node(item);
-            if(position < 1)
-                Console.WriteLine("Invalid Position");
-            else if(position == 1)
-            {
-                node.next = head;
-                head = node;
-            }
-            else 
-            {
-                Node temp = head;
-                try
+                if(previous == null)
+                    head = node;
+                else
                 {
-                    while(position > 2)
-                    {
-                        temp = temp.next;
-                        position--;
-                    }
-                    node.next = temp.next;
-                    temp.next = node;
-                }
-                catch(NullReferenceException)
-                {
-                    System.Console.WriteLine("Index out of bounds");
-                }
-            }
+                    previous.next = node;
+                }      
+                node.next = current;
         }
         public Node Pop()
         {
